@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Article
+from .models import Article, Message
 
 # Page d'accueil : liste de tous les articles
 def liste_articles(request):
