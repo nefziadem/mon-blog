@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block titre %}Contact{% endblock %}
+
+{% block contenu %}
+<div style="max-width: 600px; margin: 0 auto;">
+
+    <div style="margin-bottom: 36px;">
+        <div style="font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #7F77DD; margin-bottom: 10px;">Contact</div>
+        <h1 style="font-size: 2.2rem; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 10px;">Écrivez-moi</h1>
+        <p style="color: #888780; font-size: 15px; line-height: 1.6;">Une question, un projet, une idée ? Je vous réponds sous 24h.</p>
+    </div>
+
+    <form method="POST" style="display: flex; flex-direction: column; gap: 16px;">
+        {% csrf_token %}
+
+        <div>
+            <label style="font-size: 12px; font-weight: 500; color: #2C2C2A; display: block; margin-bottom: 6px;">Nom</label>
+            <input type="text" name="nom" placeholder="Votre nom" required
+                style="width: 100%; padding: 12px 16px; border: 0.5px solid #D3D1C7; border-radius: 10px; font-size: 14px; font-family: inherit; outline: none; transition: border-color 0.2s;"
+                onfocus="this.style.borderColor='#7F77DD'" onblur="this.style.borderColor='#D3D1C7'">
+        </div>
+
+        <div>
+            <label style="font-size: 12px; font-weight: 500; color: #2C2C2A; display: block; margin-bottom: 6px;">Email</label>
+            <input type="email" name="email" placeholder="votre@email.com" required
+                style="width: 100%; padding: 12px 16px; border: 0.5px solid #D3D1C7; border-radius: 10px; font-size: 14px; font-family: inherit; outline: none; transition: border-color 0.2s;"
+                onfocus="this.style.borderColor='#7F77DD'" onblur="this.style.borderColor='#D3D1C7'">
+        </div>
+
+        <div>
+            <label style="font-size: 12px; font-weight: 500; color: #2C2C2A; display: block; margin-bottom: 6px;">Message</label>
+            <textarea name="message" placeholder="Votre message..." rows="6" required
+                style="width: 100%; padding: 12px 16px; border: 0.5px solid #D3D1C7; border-radius: 10px; font-size: 14px; font-family: inherit; outline: none; resize: vertical; transition: border-color 0.2s;"
+                onfocus="this.style.borderColor='#7F77DD'" onblur="this.style.borderColor='#D3D1C7'"></textarea>
+        </div>
+
+        <button type="submit"
+            style="background: #7F77DD; color: white; padding: 14px 28px; border: none; border-radius: 10px; font-size: 14px; font-weight: 500; font-family: inherit; cursor: pointer; transition: opacity 0.2s; align-self: flex-start;"
+            onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
+            Envoyer le message →
+        </button>
+    </form>
+
+</div>
+{% endblock %}

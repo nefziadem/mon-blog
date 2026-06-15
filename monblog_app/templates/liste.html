@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block hero %}
+<div class="hero">
+    <div class="hero-inner">
+        <div class="hero-tag">Blog créatif & tech</div>
+        <h1>Idées, code et<br><span>créativité</span> sans limites.</h1>
+        <p>Articles sur le développement web, les tendances tech et l'innovation digitale.</p>
+        <div class="hero-btns">
+            <a href="#articles" class="btn-primary">Explorer les articles →</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block contenu %}
+<div id="articles">
+    <div class="section-label"><span>Derniers articles</span></div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px;">
+        {% for article in articles %}
+        <a href="{% url 'detail' article.pk %}" style="text-decoration: none; color: inherit;">
+            <div style="background: white; border-radius: 16px; overflow: hidden; border: 0.5px solid #D3D1C7; transition: transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 32px rgba(0,0,0,0.08)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+                <div style="height: 140px; background: linear-gradient(135deg, #534AB7, #7F77DD); display: flex; align-items: center; justify-content: center; font-size: 3rem;">📝</div>
+                <div style="padding: 20px;">
+                    <div style="font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #7F77DD; margin-bottom: 8px;">Article</div>
+                    <div style="font-size: 15px; font-weight: 500; line-height: 1.4; margin-bottom: 12px; color: #0f0f0f;">{{ article.titre }}</div>
+                    <div style="font-size: 12px; color: #888780;">{{ article.contenu|truncatewords:12 }}</div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 16px; padding-top: 16px; border-top: 0.5px solid #D3D1C7;">
+                        <span style="font-size: 11px; color: #888780;">{{ article.date_creation|date:"d M Y" }}</span>
+                        <span style="font-size: 11px; font-weight: 600; color: #534AB7;">Lire →</span>
+                    </div>
+                </div>
+            </div>
+        </a>
+        {% empty %}
+        <p style="color: #888780;">Aucun article. <a href="/admin" style="color: #7F77DD;">Créez-en un !</a></p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
