@@ -18,14 +18,10 @@ def contact(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
-            nom = form.cleaned_data['nom']
-            email = form.cleaned_data['email']
-            message = form.cleaned_data['message']
-            send_mail(
-                subject=f'Message de {nom} via Mon Blog',
-                message=f'De : {nom}\nEmail : {email}\n\n{message}',
-                from_email=email,
-                recipient_list=['ton@email.com'],
+            Message.objects.create(
+                nom=form.cleaned_data['nom'],
+                email=form.cleaned_data['email'],
+                message=form.cleaned_data['message'],
             )
             return redirect('confirmation')
     else:
